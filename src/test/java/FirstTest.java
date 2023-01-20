@@ -1,10 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -24,8 +21,8 @@ public class FirstTest {
     private final String pas = "Gipunu13!";
     WebDriver driver;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    static void setUp() {
 
         WebDriverManager.chromedriver().setup();
     }
@@ -93,7 +90,7 @@ public class FirstTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text' and @name='email' and @placeholder = 'Электронная почта']")));
         driver.findElement(By.xpath("//input[@type='text' and @name='email' and @placeholder = 'Электронная почта']")).sendKeys(login);
         driver.findElement(By.xpath("//input[ @name='password' and @placeholder = 'Введите пароль']")).sendKeys(pas);
-        driver.findElement(By.xpath("//button[@class='new-button new-button_full new-button_blue new-button_md' and @type='submit']")).submit();
+        driver.findElement(By.cssSelector("form.new-log-reg__form>div>button[type='submit']")).submit();
 
     }
 
