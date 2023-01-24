@@ -2,15 +2,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 
@@ -61,8 +57,9 @@ public class FirstTest {
 
         driver.get("https://demo.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818");
         //    Нажать на любую картинку
-        WebElement picture = driver.findElement(By.cssSelector(".content-overlay"));
-        picture.click();
+        //    WebElement picture = driver.findElement(By.cssSelector(".content-overlay"));
+        //        picture.click();
+        WebElement picture = (WebElement)((JavascriptExecutor) driver).executeScript("$('.content-overlay')[0].click();");
 //    Проверить что картинка открылась в модальном окне
         Assertions.assertTrue(driver.findElement(By.cssSelector(".pp_pic_holder")).isDisplayed());
     }
